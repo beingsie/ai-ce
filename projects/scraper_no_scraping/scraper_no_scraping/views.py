@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+from bs4 import BeautifulSoup
+from flask import Blueprint, render_template, request
+import requests
 
 views_blueprint = Blueprint('views', __name__)
 
