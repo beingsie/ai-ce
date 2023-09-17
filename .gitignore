@@ -1,5 +1,5 @@
 # Ignore macOS system files
-.DS_Store
+*.DS_Store
 
 # Ignore Windows system files
 Thumbs.db
@@ -12,10 +12,10 @@ Desktop.ini
 *~
 
 # Ignore Node.js dependencies
-/node_modules/
+*node_modules
 
 # Ignore Python virtual environment
 *venv
 
 # Ignore Python __pycache__ directory
-__pycache__/
+*__pycache__/
