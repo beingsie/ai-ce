@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}YouTube Feed{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<ul>
+    {% for embed_code in video_embeds %}
+    <li>
+        {{ embed_code | safe }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
