@@ -22,6 +22,7 @@ Before running the project, make sure you have the following installed:
 
 - Python 3.x
 - Flask (you can install it using `pip`)
+- [Tailwind CSS](https://tailwindcss.com/) version 3.3.3: A popular utility-first CSS framework for building responsive and highly customizable web interfaces. To include Tailwind CSS in your project, you can either link to the CDN or install it locally.
 
 ### Installation
 
