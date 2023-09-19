@@ -1,0 +1,25 @@
+{% block content %}
+
+<h1>GitHub Data</h1>
+
+{% for repo_data in recent_repos_data %}
+<h2>Repository: {{ repo_data.repo_name }}</h2>
+<p>Description: {{ repo_data.repo_description }}</p>
+<p>Repository URL: <a href="{{ repo_data.repo_url }}" target="_blank">{{ repo_data.repo_url }}</a></p>
+
+<h3>Latest Commits:</h3>
+<ul>
+    {% for commit in repo_data.repo_commits %}
+    <li>
+        <strong>SHA:</strong>
+        <a href="https://github.com/{{ repo_data.username }}/{{ repo_data.repo_name }}/commit/{{ commit.sha }}"
+            target="_blank">{{ commit.sha }}</a><br>
+        <strong>Message:</strong> {{ commit.commit.message }}<br>
+        <strong>Author:</strong> {{ commit.commit.author.name }}<br>
+        <strong>Date:</strong> {{ commit.commit.author.date }}<br>
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}
+
+{% endblock %}
