@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Bookies",
+    "version": "1.0",
+    "description": "Add custom links to the context menu",
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "storage"
+    ],
+    "icons": {
+        "48": "icons/icon48.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "options.html",
+        "default_icon": {
+            "48": "icons/icon48.png"
+        }
+    },
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": true
+    },
+    "default_locale": "en"
+}
