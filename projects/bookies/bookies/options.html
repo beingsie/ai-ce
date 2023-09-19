@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options</title>
+</head>
+
+<body>
+    <h1>Customize Links</h1>
+
+    <!-- Form for adding/editing links -->
+    <form id="linkForm">
+        <label for="linkName">Link Name:</label>
+        <input type="text" id="linkName" required><br><br>
+
+        <label for="linkUrl">Link URL:</label>
+        <input type="url" id="linkUrl" required><br><br>
+
+        <button type="button" id="addLink">Add Link</button>
+        <button type="button" id="updateLink">Update Link</button>
+        <button type="button" id="deleteLink">Delete Link</button>
+    </form>
+
+    <!-- List of existing links -->
+    <h2>Existing Links:</h2>
+    <ul id="linkList">
+        <!-- Populate this list with existing links dynamically using JavaScript -->
+    </ul>
+
+    <script src="options.js"></script>
+</body>
+
+</html>
