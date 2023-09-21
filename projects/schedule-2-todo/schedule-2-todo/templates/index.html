@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main>
+    <div>
+        <h1 class="text-2xl font-bold mt-4 mb-6">Task Checklist</h1>
+        <button id="reset-button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4">Reset
+            Checklist</button>
+        <button id="delete-schedule-button"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4">Delete Saved
+            Schedule</button>
+        <input type="file" id="file-input" accept=".txt" class="mb-4">
+        <ul class="list-none p-0" id="task-list">
+            <!-- Tasks will be added here using JavaScript -->
+        </ul>
+        <button id="add-custom-entry-button"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Add Custom Entry</button>
+        <input type="text" id="custom-entry" class="mb-4" placeholder="Enter a custom entry">
+    </div>
+</main>
+{% endblock %}

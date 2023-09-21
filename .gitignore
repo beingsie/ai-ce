@@ -1,21 +1,11 @@
-# Ignore macOS system files
-*.DS_Store
-
-# Ignore Windows system files
+# Ignore common system files and directories
+.DS_Store
 Thumbs.db
-Desktop.ini
+*.swp
 
-# Ignore Linux trash directory
-.Trash-*/
-
-# Ignore temporary files created by text editors
-*~
-
-# Ignore Node.js dependencies
-*node_modules
-
-# Ignore Python virtual environment
-*venv
-
-# Ignore Python __pycache__ directory
-*__pycache__/
+# Ignore Node.js modules and dependencies in all directories
+**/node_modules/
+**/npm-debug.log
+**/yarn-error.log
+**/venv
+**/__pycache__
