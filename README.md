@@ -1,84 +1,34 @@
-# Playlist Dashboard
+# AI Mirror
 
-## Overview
+This repository is a collection of projects that have been created through prompt engineering as a way to dwelve into the world of prompt engineering.
 
-This is a simple web application built with Flask that allows you to create a playlist dashboard. You can view a list of YouTube video URLs and embed them onto the webpage. Additionally, you can search for videos by genre.
+## Tools used:
+- [GPT 3.5](https://platform.openai.com/docs/models/gpt-3-5)
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+- [About](#about)
+- [Projects](#projects)
 - [License](#license)
-- [Acknowledgments](#acknowledgments)
 
-## Getting Started
+## About
 
-### Prerequisites
+In this repository, you will find a diverse range of projects that have been developed through prompt engineering.
 
-Before running the project, make sure you have the following installed:
+The goal of this repository is to:
 
-- Python 3.x
-- Flask (you can install it using `pip`)
-- [Tailwind CSS](https://tailwindcss.com/) version 3.3.3: A popular utility-first CSS framework for building responsive and highly customizable web interfaces. To include Tailwind CSS in your project, you can either link to the CDN or install it locally.
+- Showcase the creativity and problem-solving skills through the use of prompt engineering.
+- Provide inspiration for others who are looking for project ideas.
 
-### Installation
+## Projects
 
-1. **Clone this repository to your local machine:**
+Here are some of the featured projects in this repository:
 
-   ```markdown
-   git clone https://github.com/your-username/playlist-dashboard.git
-   ```
-
-2. **Navigate to the project directory:**
-
-   ```markdown
-   cd playlist-dashboard
-   ```
-
-3. **Create a virtual environment and activate it (if not already activated):**
-
-   ```markdown
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows, use "venv\Scripts\activate"
-   ```
-
-4. **Install the project dependencies:**
-
-   ```markdown
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-1. **Run the Flask application:**
-
-   ```markdown
-   python app.py
-   ```
-
-2. **Open your web browser and go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to view the index page. Click on "Go to Feed" to see the embedded YouTube videos.**
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to this project, please follow these guidelines:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Push your changes to your fork.
-5. Create a pull request to the main repository.
+- [Github Activity](https://github.com/beingsie/ai-mirror/tree/main/projects/github_activity/github_activity): **WIP** - Web app that displays GitHub activity, such as recent commits, repos etc.
+- [Playlist Dashboard](https://github.com/beingsie/ai-mirror/tree/main/projects/playlist_dashboard/playlist_dashboard): **WIP** - Dashboard that displays YouTube videos.
+- [Schedule 2 To-Do](https://github.com/beingsie/ai-mirror/tree/main/projects/schedule-2-todo/schedule-2-todo): **WIP** - Takes `.txt` documents with schedule type format and converts into a to-do list.
+- [Study Timer](https://github.com/beingsie/ai-mirror/tree/main/projects/timer): **WIP** - Study timer that alerts via sound and displays timer via the browser title.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Flask for providing a simple and powerful web framework.
-- YouTube for hosting the videos used in this demo.
-```
-
-Replace `"your-username"` in the clone URL with your actual GitHub username or the URL to your repository. You can further customize and expand this README as needed for your project.
+This repository is licensed under the [MIT License](LICENSE.md). Feel free to use and share the projects as you like, and consider contributing back to the community!
