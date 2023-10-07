@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="../dist/output.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-bri-white-gray flex items-center justify-center h-screen">
+    <div class="flex flex-col drop-shadow-3xl w-full max-w-sm">
+        <div class="flex flex-row items-center justify-between p-6 bg-white rounded-2xl gap-2 border border-gray-200">
+            <p>Set timer:</p>
+            <input type="number" id="timerInput" class="w-fit" min="1" value="25">
+        </div>
+        <div class="w-full p-6 bg-white rounded-2xl border border-gray-200">
+            <p id="timerDisplay" class="text-8xl tracking-tighter text-center font-medium mb-4"></p>
+            <div class="flex flex-row items-center gap-2">
+                <button id="startButton"
+                    class="w-full flex flex-row items-center justify-between py-4 px-6 bg-bri-blue text-white rounded-2xl">
+                    <p>Start</p>
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="resetButton"
+                    class="w-full flex flex-row items-center justify-between py-4 px-6 bg-bri-gray text-white rounded-2xl"
+                    disabled>
+                    <p>Reset</p>
+                    <i class="fa-solid fa-rotate-right transform -scale-x-100"></i>
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-row items-center justify-between p-6 bg-white rounded-2xl gap-2 border border-gray-200">
+            <div class="w-fit flex flex-row items-center gap-2 mx-auto">
+                <p>Total: <span id="totalTime">00:00</span></p>
+                <button id="resetTotalTimeButton"
+                    class="w-fit flex flex-row items-center justify-between p-4 bg-bri-gray text-white rounded-2xl">
+                    <i class="fa-solid fa-rotate-right transform -scale-x-100"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden audio player -->
+    <audio id="alarmSound" hidden>
+        <source src="https://assets.mixkit.co/active_storage/sfx/911/911-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="./assets/js/timer.js"></script>
+</body>
+
+</html>
