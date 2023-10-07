@@ -41,6 +41,10 @@ function toggleTimer() {
         totalTimeInSeconds++;
         updateDisplay();
         updateTotalTimeDisplay();
+        
+        // Set the timer display in the browser title (add this line)
+        document.title = `Timer: ${timerDisplay.textContent}`;
+        
       } else {
         clearInterval(timerInterval);
         isTimerRunning = false;
