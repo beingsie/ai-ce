@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <h1 class="text-4xl">Study Timer</h1>
-    <p>Set the timer (in minutes): <input type="number" id="timerInput" class="p-2 rounded-md" min="1" value="25"></p>
+    <p>Set the timer:</p>
+    <input type="number" id="timerInput" class="p-2 rounded-md" min="1" value="25">
     <button id="startButton" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer">Start</button>
     <button id="resetButton" class="bg-gray-300 text-gray-600 px-4 py-2 rounded-md cursor-not-allowed" disabled>Reset</button>
     <p id="timerDisplay" class="text-6xl my-5">25:00</p>
