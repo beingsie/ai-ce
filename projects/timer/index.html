@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <h1>Study Timer</h1>
-    <p>Set the timer (in minutes): <input type="number" id="timerInput" min="1" value="25"></p>
-    <button id="startButton">Start</button>
-    <button id="resetButton" disabled>Reset</button>
-    <p id="timerDisplay">25:00</p>
-    <p>Total Time Elapsed: <span id="totalTime">00:00</span></p>
-    <button id="resetTotalTimeButton">Reset Total Time</button>
+    <h1 class="text-4xl">Study Timer</h1>
+    <p>Set the timer (in minutes): <input type="number" id="timerInput" class="p-2 rounded-md" min="1" value="25"></p>
+    <button id="startButton" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer">Start</button>
+    <button id="resetButton" class="bg-gray-300 text-gray-600 px-4 py-2 rounded-md cursor-not-allowed" disabled>Reset</button>
+    <p id="timerDisplay" class="text-6xl my-5">25:00</p>
+    <p class="text-lg">Total Time Elapsed: <span id="totalTime" class="text-2xl">00:00</span></p>
+    <button id="resetTotalTimeButton" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 cursor-pointer">Reset Total Time</button>
 
     <audio id="alarmSound" hidden>
         <source src="https://assets.mixkit.co/active_storage/sfx/911/911-preview.mp3" type="audio/mpeg">
