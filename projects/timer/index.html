@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <h1>Study Timer</h1>
+    <p>Set the timer (in minutes): <input type="number" id="timerInput" min="1" value="25"></p>
+    <button id="startButton">Start</button>
+    <button id="resetButton" disabled>Reset</button>
+    <p id="timerDisplay">25:00</p>
+    <p>Total Time Elapsed: <span id="totalTime">00:00</span></p>
+    <button id="resetTotalTimeButton">Reset Total Time</button>
+
+    <audio id="alarmSound" hidden>
+        <source src="https://assets.mixkit.co/active_storage/sfx/911/911-preview.mp3" type="audio/mpeg">
+    </audio>
+    <script src="assets/js/timer.js"></script>
+</body>
+
+</html>
