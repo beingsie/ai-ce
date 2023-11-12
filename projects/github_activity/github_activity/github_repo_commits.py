@@ -1,8 +1,8 @@
 import requests
 
 # Replace with your GitHub username and Personal Access Token
-username = "beingsie"
-token = "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"
+username = "REPLACE_WITH_YOUR_USERNAME"
+token = "REPLACE_WITH_YOUR_TOKEN"
 
 # Create a session with the Authorization header set to your PAT
 session = requests.Session()
