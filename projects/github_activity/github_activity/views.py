@@ -29,7 +29,7 @@ def display_github_data():
         recent_repos_data = []
 
         # Limit the number of repositories to fetch (e.g., fetch data for the last 3 recent repositories)
-        num_recent_repos = 3
+        num_recent_repos = 5
 
         for repo in repos[:num_recent_repos]:
             # Retrieve the latest commits for each repository
