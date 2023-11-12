@@ -24,6 +24,7 @@ The goal of this repository is to:
 
 Here are some of the featured projects in this repository:
 
+- [md to HTML](https://github.com/beingsie/ai-mirror/tree/main/projects/md-to-html): **WIP** - Python script that converst `.md` files to `HTML` files.
 - [Github Activity](https://github.com/beingsie/ai-mirror/tree/main/projects/github_activity/github_activity): **WIP** - Web app that displays GitHub activity, such as recent commits, repos etc.
 - [Playlist Dashboard](https://github.com/beingsie/ai-mirror/tree/main/projects/playlist_dashboard/playlist_dashboard): **WIP** - Dashboard that displays YouTube videos.
 - [Schedule 2 To-Do](https://github.com/beingsie/ai-mirror/tree/main/projects/schedule-2-todo/schedule-2-todo): **WIP** - Takes `.txt` documents with schedule type format and converts into a to-do list.
