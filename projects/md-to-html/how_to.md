@@ -66,9 +66,3 @@ Success! Output HTML file: converted_site_00.html in directory: converted_site_0
 ## Dependencies
 
 - [Markdown](https://pypi.org/project/Markdown/): A Python implementation of Markdown.
-
-## Author
-
-[Your Name]
-
-Feel free to customize this README to better suit your project and provide additional information if needed.
