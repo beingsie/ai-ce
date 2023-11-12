@@ -13,7 +13,7 @@ This repository is a collection of projects that have been created through promp
 
 ## About
 
-In this repository, you will find a diverse range of projects that have been developed through prompt engineering.
+In this repository, you will find a diverse range of projects that have been co-engineered through prompt engineering.
 
 The goal of this repository is to:
 
