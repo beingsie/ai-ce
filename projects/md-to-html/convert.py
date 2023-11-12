@@ -5,7 +5,7 @@ import markdown
 
 def generate_output_filename(input_md_file, output_directory):
     base_name, ext = os.path.splitext(input_md_file)
-    pattern = re.compile(r"converted_site_(\d+)\.html")
+    pattern = re.compile(r"converted_site_(\d+)")
 
     # Find existing converted_site files
     existing_files = [f for f in os.listdir(output_directory) if pattern.match(f)]
@@ -17,7 +17,7 @@ def generate_output_filename(input_md_file, output_directory):
     else:
         next_number = 0
 
-    output_file = f"converted_site_{next_number:02d}.html"
+    output_file = f"converted_site_{next_number:02d}"
     return os.path.join(output_directory, output_file), output_file
 
 
