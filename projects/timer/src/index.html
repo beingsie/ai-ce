@@ -11,48 +11,18 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Tailwind -->
-    <link rel="stylesheet" href="../dist/output.css">
+    <!-- <link rel="stylesheet" href="../dist/output.css"> -->
 </head>
 
-<body class="flex items-center justify-center h-screen bg-gray-200">
-    <div class="w-full max-w-sm mx-auto">
-        <div class="flex flex-row items-center justify-between p-4 bg-white rounded-2xl border border-gray-100">
-            <p class="text-gray-600">Set the timer:</p>
-            <input type="number" id="timerInput" class="p-2 text-gray-600" min="1" value="25">
-        </div>
-        <div class="bg-white rounded-2xl p-6 border border-gray-100">
-            <p id="timerDisplay" class="text-9xl text-center font-medium my-5">25:00</p>
-            <div class="flex flex-row items-center gap-2">
-                <button id="startButton"
-                    class="w-full flex flex-row items-center justify-between bg-azul text-white px-8 py-4 rounded-2xl hover:bg-blue-500 cursor-pointer">
-                    <p>Start</p>
-                    <i class="fa-solid fa-play"></i>
-                </button>
-                <button id="resetButton"
-                    class="w-full flex flex-row items-center justify-between bg-griz text-gray-600 px-8 py-4 rounded-2xl cursor-not-allowed"
-                    disabled>
-                    <p>Reset</p>
-                    <i class="fa-solid fa-rotate-right transform -scale-x-100"></i>
-                </button>
-            </div>
-        </div>
-        <div class="flex flex-row items-center justify-between gap-2 p-6 bg-white rounded-2xl border border-gray-100">
-            <div class="flex flex-row items-center gap-2">
-                <p class="text-gray-600">Total elapsed time:</p>
-                <p class="text-lg text-gray-600" id="totalTime"></p>
-            </div>
-            <button id="resetTotalTimeButton" class="text-gray-600 cursor-pointer">
-                <i class="fa-solid fa-rotate-right transform -scale-x-100"></i>
-            </button>
-        </div>
+<body>
+    <div>
+        <h1>Angel Number Meanings</h1>
+        <input type="text" id="numberInput" placeholder="Enter an Angel Number (e.g., 444)" required>
+        <div id="closestMatch"></div>
+        <button id="findMeaning">Find Meaning</button>
+        <div id="meaning"></div>
     </div>
-
-    <!-- Hidden audio -->
-    <audio id="alarmSound" hidden>
-        <source src="https://assets.mixkit.co/active_storage/sfx/911/911-preview.mp3" type="audio/mpeg">
-    </audio>
-    <!-- Scripts -->
-    <script src="assets/js/timer.js"></script>
+    <script src="./assets/js/angel_numbers.js"></script>
 </body>
 
 </html>
