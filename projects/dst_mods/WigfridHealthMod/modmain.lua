@@ -14,6 +14,13 @@ AddPrefabPostInit("wathgrithr", function(inst)
     if inst.components.locomotor then
         inst.components.locomotor:SetExternalSpeedMultiplier(inst, "wigfrid_speed_boost", 3)
     end
+
+    -- Sanity regeneration
+    if inst.components.sanity then
+        inst:DoPeriodicTask(1, function(inst)
+            inst.components.sanity:DoDelta(25) -- Increase sanity by 1 every second
+        end)
+    end
 end)
 
 -- Increase Wigfrid's battle spear damage
