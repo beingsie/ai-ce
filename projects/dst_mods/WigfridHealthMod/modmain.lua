@@ -2,7 +2,7 @@
 AddPrefabPostInit("wathgrithr", function(inst)
     -- Set maximum health to 350
     if inst.components.health then
-        inst.components.health:SetMaxHealth(350)
+        inst.components.health:SetMaxHealth(500)
     end
 
     -- Set maximum hunger to 350
