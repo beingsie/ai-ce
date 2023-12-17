@@ -27,11 +27,6 @@ end)
 AddPrefabPostInit("spear_wathgrithr", function(inst)
     -- Set weapon damage to 500
     if inst.components.weapon then
-        inst.components.weapon:SetDamage(500)
-    end
-
-    -- Set weapon range to 70
-    if inst.components.weapon and inst.components.weapon.attackrange then
-        inst.components.weapon.attackrange = 70
+        inst.components.weapon:SetDamage(1000)
     end
 end)
