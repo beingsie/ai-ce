@@ -9,4 +9,6 @@ reign_of_giants_compatible = false
 shipwrecked_compatible = false
 dst_compatible = true
 
+api_version = 10
+
 priority = 0
