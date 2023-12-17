@@ -7,7 +7,7 @@ AddPrefabPostInit("wathgrithr", function(inst)
 
     -- Set maximum hunger to 350
     if inst.components.hunger then
-        inst.components.hunger:SetMax(350)
+        inst.components.hunger:SetMax(500)
     end
 
     -- Set speed multiplier to 2.33 times normal speed
