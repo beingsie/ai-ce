@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- Include Tailwind CSS via CDN -->
+    <link href="https://cdn.tailwindcss.com/2.2.16/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="font-sans bg-gray-100">
+    <div id="container" class="max-w-screen-md mx-auto p-4 border rounded bg-white">
+        <h2 class="text-center">Budget Calculator</h2>
+        <form id="budgetForm" class="text-center mb-4">
+            <label for="billsPercentage">Bills Percentage:</label>
+            <input type="number" id="billsPercentage" value="50"><br>
+
+            <label for="leisurePercentage">Leisure Percentage:</label>
+            <input type="number" id="leisurePercentage" value="30"><br>
+
+            <label for="emergencyPercentage">Emergency Percentage:</label>
+            <input type="number" id="emergencyPercentage" value="20"><br>
+
+            <label for="rateInput" class="block text-gray-700 text-sm font-bold mb-2">Rate:</label>
+            <input type="text" id="rateInput" class="w-1/3 px-3 py-2 border rounded-lg" placeholder="Enter Rate"><br>
+
+            <label for="hoursInput" class="block text-gray-700 text-sm font-bold mb-2 mt-2">Hours:</label>
+            <input type="text" id="hoursInput" class="w-1/3 px-3 py-2 border rounded-lg" placeholder="Enter Hours"><br>
+
+            <label for="taxesInput" class="block text-gray-700 text-sm font-bold mb-2 mt-2">Taxes:</label>
+            <input type="text" id="taxesInput" class="w-1/3 px-3 py-2 border rounded-lg" placeholder="Enter Taxes"><br>
+
+            <!-- Reset Button -->
+            <input type="reset" value="Reset"
+                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-2">
+        </form>
+
+        <!-- Display results here -->
+        <div id="results" class="text-center">
+            <p><strong>Rate:</strong> <span id="Rate">$0.00</span></p>
+            <p><strong>Taxes:</strong> <span id="Taxes">$0.00</span></p>
+            <p><strong>Before Taxes Total:</strong> <span id="BeforeTaxesTotal">$0.00</span></p>
+            <p><strong>After Taxes Total:</strong> <span id="AfterTaxesTotal">$0.00</span></p>
+        </div>
+
+        <h3>50/30/20 Rule Breakdown</h3>
+        <div id="breakdown">
+            <p><strong>Bi-Weekly:</strong></p>
+            <p>Bills: <span id="biWeeklyBills">$0.00</span></p>
+            <p>Leisure: <span id="biWeeklyLeisure">$0.00</span></p>
+            <p>Emergency: <span id="biWeeklyemergency">$0.00</span></p>
+
+            <p><strong>Monthly:</strong></p>
+            <p>Bills: <span id="monthlyBills">$0.00</span></p>
+            <p>Leisure: <span id="monthlyLeisure">$0.00</span></p>
+            <p>Emergency: <span id="monthlyemergency">$0.00</span></p>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/budget_rule.js"></script>
+</body>
+
+</html>
