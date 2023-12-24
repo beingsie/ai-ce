@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post['title'] }}</title>
+</head>
+<body>
+    <h1>{{ post['title'] }}</h1>
+    <p>{{ post['content'] }}</p>
+    <p>
+        <strong>Created on:</strong>
+        {{ post['timestamp'].strftime('%b %d, %Y @ %-I:%M %p') }}
+    </p>
+    {% if post['last_edit'] %}
+        <p>
+            <strong>Last Edited:</strong>
+            {{ post['last_edit'].strftime('%b %d, %Y @ %-I:%M %p') }}
+        </p>
+    {% endif %}
+    <p>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </p>
+</body>
+</html>
