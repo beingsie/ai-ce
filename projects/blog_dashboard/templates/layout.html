@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Flask Blog{% endblock %}</title>
+    <!-- Include CSS and JavaScript links here -->
+</head>
+<body>
+    <header>
+        <h1>My Flask Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2023 My Flask Blog</p>
+    </footer>
+</body>
+</html>

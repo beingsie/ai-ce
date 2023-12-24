@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Post</title>
+</head>
+<body>
+    <h1>Edit Post</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ form.title.data }}">
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <div class="input-group">
+                <textarea class="form-control" id="content" name="content" rows="5">{{ form.content.data }}</textarea>
+            </div>
+        </div>
+    
+        <!-- Text Styling Options -->
+        <div class="form-group">
+            <label>Text Styling:</label>
+            <button type="button" onclick="toggleTextStyle('bold');" class="btn btn-secondary"><strong>B</strong></button>
+            <button type="button" onclick="toggleTextStyle('italic');" class="btn btn-secondary"><em>I</em></button>
+            <button type="button" onclick="toggleTextStyle('underline');" class="btn btn-secondary"><u>U</u></button>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    
+    <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+    
+    <script>
+        // Function to toggle text styling
+        function toggleTextStyle(style) {
+            document.execCommand(style, false, null);
+        }
+    </script>
+    
+</body>
+</html>

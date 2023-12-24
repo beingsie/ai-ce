@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Flask Blog</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to My Flask Blog</h1>
+
+    <h2>Recent Posts:</h2>
+    <div class="sorting-options">
+        <a href="{{ url_for('index', sort='newest') }}" class="btn btn-primary">Newest First</a>
+        <a href="{{ url_for('index', sort='oldest') }}" class="btn btn-secondary">Oldest First</a>
+    </div>    
+    <a href="{{ url_for('create_post') }}" class="btn btn-primary">Create New Post</a>
+    <ul class="post-list">
+        {% for post in posts %}
+            <li>
+                <h3>{{ post['title'] }}</h3>
+                <p>{{ post['content'] }}</p>
+                <p>
+                    <strong>Created on:</strong>
+                    {{ post['timestamp'].strftime('%b %d, %Y @ %-I:%M %p') }}
+                </p>
+                {% if post['last_edit'] %}
+                    <p>
+                        <strong>Last Edited:</strong>
+                        {{ post['last_edit'].strftime('%b %d, %Y @ %-I:%M %p') }}
+                    </p>
+                {% endif %}
+                <p>
+                    <a href="{{ url_for('view_post', post_id=loop.index0) }}">Read more</a>
+                    {% if current_user == blogger %}
+                        <a href="{{ url_for('edit_post', post_id=loop.index0) }}">Edit</a>
+                        <a href="{{ url_for('delete_post', post_id=loop.index0) }}">Delete</a>
+                    {% endif %}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>          
+    
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/text_styling.js') }}"></script>
+    
+</body>
+
+</html>
