@@ -23,7 +23,7 @@ The goal of this repository is to:
 ## Projects
 
 Here are some of the featured projects in this repository:
-
+- [Budget Rule Me](https://github.com/beingsie/ai-ce/tree/main/projects/budget_rules): **WIP** - Bugget Rule Me helps your budgeting using the 50/30/20 rule with custom rule option avaiale.
 - [md to HTML](https://github.com/beingsie/ai-mirror/tree/main/projects/md-to-html): **WIP** - Python script that converst `.md` files to `HTML` files.
 - [Github Activity](https://github.com/beingsie/ai-mirror/tree/main/projects/github_activity/github_activity): **WIP** - Web app that displays GitHub activity, such as recent commits, repos etc.
 - [Playlist Dashboard](https://github.com/beingsie/ai-mirror/tree/main/projects/playlist_dashboard/playlist_dashboard): **WIP** - Dashboard that displays YouTube videos.
