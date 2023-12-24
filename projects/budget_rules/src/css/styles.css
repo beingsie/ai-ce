@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 32px;
+}
+
+#container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #545454;
+    border-radius: 5px;
+    background-color: #464646;
+}
+
+h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid #646464;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
