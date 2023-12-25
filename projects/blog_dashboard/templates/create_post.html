@@ -9,11 +9,11 @@
         {{ form.hidden_tag() }}
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{ form.title.data }}">
+            <input type="text" class="form-control" id="title" name="title">
         </div>
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea class="form-control" id="content" name="content" rows="5">{{ form.content.data }}</textarea>
+            <textarea class="form-control" id="content" name="content" rows="5" placeholder="How long have you been thinking?"></textarea>
         </div>
     
         <button type="submit" class="btn btn-primary">Submit Post</button>
