@@ -10,46 +10,54 @@ csrf = CSRFProtect(app)
 # Initialize an empty list to store blog posts
 sample_posts = []
 
-def get_paginated_posts(page, posts_per_page):
-    total_posts = len(sample_posts)
+def sort_posts_by_timestamp():
+    if not sample_posts:
+        return []
+
+    # Ensure that 'timestamp' is a key in each post dictionary
+    if all('timestamp' in post for post in sample_posts):
+        return sorted(sample_posts, key=lambda post: post['timestamp'], reverse=True)
+    else:
+        # Handle the case where 'timestamp' might not be present in all posts
+        return []
+
+def get_paginated_posts(page, posts_per_page, posts):
+    total_posts = len(posts)
     start = (page - 1) * posts_per_page
     end = start + posts_per_page
-    paginated_posts = sample_posts[start:end]
+    paginated_posts = posts[start:end]
     return paginated_posts, total_posts
 
 @app.route('/')
 def index():
+    sort_order = request.args.get('sort', 'newest')  # Default to newest
     page = request.args.get('page', 1, type=int)
     posts_per_page = 3
-    posts, total_posts = get_paginated_posts(page, posts_per_page)
-    total_pages = (total_posts + posts_per_page - 1) // posts_per_page
-    return render_template('index.html', posts=posts, page=page, total_pages=total_pages)
 
-@app.route('/post/<int:post_id>')
-def view_post(post_id):
-    if post_id < len(sample_posts):
-        return render_template('post.html', post=sample_posts[post_id])
-    else:
-        return "Post not found."
+    if sort_order == 'newest':
+        sorted_posts = sorted(sample_posts, key=lambda post: post['timestamp'], reverse=True)
+    else:  # sort_order == 'oldest'
+        sorted_posts = sorted(sample_posts, key=lambda post: post['timestamp'])
+
+    posts, total_posts = get_paginated_posts(page, posts_per_page, sorted_posts)
+    total_pages = (total_posts + posts_per_page - 1) // posts_per_page
+    return render_template('index.html', posts=posts, page=page, total_pages=total_pages, sort_order=sort_order)
 
 @app.route('/create_post', methods=['GET', 'POST'])
 def create_post():
     form = PostForm()
     if form.validate_on_submit():
         title = form.title.data
-        content = request.form.get('content')  # Get the content with styles
+        content = request.form.get('content')
         timestamp = datetime.now()
-        last_edit = None
 
         # Add the new post to the list of sample_posts
-        sample_posts.append({'title': title, 'content': content, 'timestamp': timestamp, 'last_edit': last_edit})
-
-        # Sort the posts after adding the new post
-        sample_posts.sort(key=lambda post: post['timestamp'], reverse=True)
+        sample_posts.append({'title': title, 'content': content, 'timestamp': timestamp})
 
         flash('Post created successfully', 'success')
         return redirect(url_for('index'))
     return render_template('create_post.html', form=form)
+
 
 @app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
@@ -67,6 +75,13 @@ def edit_post(post_id):
             form.content.data = post['content']
 
         return render_template('edit_post.html', form=form, post=post)
+    else:
+        return "Post not found."
+    
+@app.route('/post/<int:post_id>')
+def view_post(post_id):
+    if post_id < len(sample_posts):
+        return render_template('post.html', post=sample_posts[post_id])
     else:
         return "Post not found."
 
