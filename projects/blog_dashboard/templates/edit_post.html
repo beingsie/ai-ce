@@ -19,25 +19,10 @@
             </div>
         </div>
     
-        <!-- Text Styling Options -->
-        <div class="form-group">
-            <label>Text Styling:</label>
-            <button type="button" onclick="toggleTextStyle('bold');" class="btn btn-secondary"><strong>B</strong></button>
-            <button type="button" onclick="toggleTextStyle('italic');" class="btn btn-secondary"><em>I</em></button>
-            <button type="button" onclick="toggleTextStyle('underline');" class="btn btn-secondary"><u>U</u></button>
-        </div>
-    
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
     
     <p><a href="{{ url_for('index') }}">Back to Home</a></p>
-    
-    <script>
-        // Function to toggle text styling
-        function toggleTextStyle(style) {
-            document.execCommand(style, false, null);
-        }
-    </script>
     
 </body>
 </html>
