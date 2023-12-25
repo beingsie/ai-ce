@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf.csrf import CSRFProtect
 from forms import PostForm
 from datetime import datetime
-from flask import request
 
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = 'your_secret_key'  # Change this to a secure key
@@ -11,16 +10,20 @@ csrf = CSRFProtect(app)
 # Initialize an empty list to store blog posts
 sample_posts = []
 
+def get_paginated_posts(page, posts_per_page):
+    total_posts = len(sample_posts)
+    start = (page - 1) * posts_per_page
+    end = start + posts_per_page
+    paginated_posts = sample_posts[start:end]
+    return paginated_posts, total_posts
+
 @app.route('/')
 def index():
-    sort = request.args.get('sort', 'newest')
-    
-    if sort == 'oldest':
-        sorted_posts = sorted(sample_posts, key=lambda post: post['timestamp'])
-    else:
-        sorted_posts = sorted(sample_posts, key=lambda post: post['timestamp'], reverse=True)
-
-    return render_template('index.html', posts=sorted_posts, datetime=datetime)
+    page = request.args.get('page', 1, type=int)
+    posts_per_page = 3
+    posts, total_posts = get_paginated_posts(page, posts_per_page)
+    total_pages = (total_posts + posts_per_page - 1) // posts_per_page
+    return render_template('index.html', posts=posts, page=page, total_pages=total_pages)
 
 @app.route('/post/<int:post_id>')
 def view_post(post_id):
@@ -61,8 +64,6 @@ def edit_post(post_id):
             return redirect(url_for('index'))
         else:
             form.title.data = post['title']
-
-            # Preserve the content with styles
             form.content.data = post['content']
 
         return render_template('edit_post.html', form=form, post=post)
@@ -72,7 +73,6 @@ def edit_post(post_id):
 @app.route('/delete_post/<int:post_id>', methods=['GET', 'POST'])
 def delete_post(post_id):
     if post_id < len(sample_posts):
-        post = sample_posts[post_id]
         sample_posts.pop(post_id)  # Remove the post from the list
         flash('Post deleted successfully', 'success')
         return redirect(url_for('index'))

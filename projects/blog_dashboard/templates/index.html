@@ -38,6 +38,24 @@
             </li>
         {% endfor %}
     </ul>          
+    <!-- Pagination Controls with Page Numbers -->
+    <div class="pagination">
+        <!-- {% if page > 1 %}
+        <a href="{{ url_for('index', page=page-1) }}">Previous</a>
+        {% endif %} -->
+
+        <!-- Display page numbers -->
+        {% for p in range(1, total_pages + 1) %}
+        {% if p == page %}
+        <a class="active-page">{{ p }}</a>
+        {% else %}
+        <a href="{{ url_for('index', page=p) }}">{{ p }}</a>
+        {% endif %}
+        {% endfor %}
+
+        <!-- {% if page < total_pages %} <a href="{{ url_for('index', page=page+1) }}">Next</a>
+            {% endif %} -->
+    </div>
     
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
