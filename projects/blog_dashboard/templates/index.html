@@ -22,12 +22,12 @@
             <p>{{ post['content'] }}</p>
             <p>
                 <strong>Created on:</strong>
-                {{ post['timestamp'].strftime('%b %d, %Y @ %-I:%M %p') }}
+                {{ post['timestamp'].strftime('%b %d, %Y @ %-I:%M:%S %p') }}
             </p>
             {% if post['last_edit'] %}
             <p>
                 <strong>Last Edited:</strong>
-                {{ post['last_edit'].strftime('%b %d, %Y @ %-I:%M %p') }}
+                {{ post['last_edit'].strftime('%b %d, %Y @ %-I:%M:%S %p') }}
             </p>
             {% endif %}
             <p>
