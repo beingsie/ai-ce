@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf.csrf import CSRFProtect
 from forms import PostForm
+import json
 from datetime import datetime
 import uuid
 
@@ -10,6 +11,25 @@ csrf = CSRFProtect(app)
 
 # Initialize an empty list to store blog posts
 sample_posts = []
+
+def load_posts_from_json():
+    try:
+        with open('posts.json', 'r') as file:
+            posts = json.load(file)
+            for post in posts:
+                if 'timestamp' in post:
+                    post['timestamp'] = datetime.strptime(post['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+                if 'last_edit' in post:
+                    post['last_edit'] = datetime.strptime(post['last_edit'], '%Y-%m-%d %H:%M:%S.%f')
+            return posts
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+def save_posts_to_json(posts):
+    with open('posts.json', 'w') as file:
+        json.dump(posts, file, indent=4, default=str)
+
+sample_posts = load_posts_from_json()
 
 def sort_posts_by_timestamp():
     if not sample_posts:
@@ -61,8 +81,11 @@ def create_post():
             'timestamp': timestamp
         })
 
+        # Save the updated posts list to JSON
+        save_posts_to_json(sample_posts)
+
         # After creating a post, redirect to the home page or a specific post page
-        return redirect(url_for('index'))  # Replace 'index' with the appropriate view function if necessary
+        return redirect(url_for('index'))
 
     # Render the post creation form
     return render_template('create_post.html', form=form)
@@ -78,6 +101,9 @@ def edit_post(post_id):
             post['title'] = form.title.data
             post['content'] = request.form.get('content')  # Get the content with styles
             post['last_edit'] = datetime.now()
+
+            # Save the updated posts list to JSON
+            save_posts_to_json(sample_posts)
             flash('Post edited successfully', 'success')
             return redirect(url_for('index'))
         else:
@@ -106,6 +132,8 @@ def delete_post(post_id):
     if post:
         sample_posts.remove(post)  # Remove the post from the list
         flash('Post deleted successfully', 'success')
+        # Save the updated posts list to JSON
+        save_posts_to_json(sample_posts)
         return redirect(url_for('index'))
     else:
         return "Post not found."
