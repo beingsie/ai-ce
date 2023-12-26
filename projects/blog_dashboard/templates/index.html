@@ -31,11 +31,10 @@
             </p>
             {% endif %}
             <p>
-                <a href="{{ url_for('view_post', post_id=loop.index0) }}">Read more</a>
+                <a href="{{ url_for('view_post', post_id=post['id']) }}">Read more</a>
                 {% if current_user == blogger %}
-                <a href="{{ url_for('edit_post', post_id=loop.index0) }}">Edit</a>
-                <!-- <a href="{{ url_for('delete_post', post_id=loop.index0) }}">Delete</a> -->
-                <a href="{{ url_for('delete_post', post_id=loop.index0) }}" class="delete-post">Delete</a>
+                <a href="{{ url_for('edit_post', post_id=post['id']) }}">Edit</a>
+                <a href="{{ url_for('delete_post', post_id=post['id']) }}" class="delete-post">Delete</a>
                 {% endif %}
             </p>
         </li>

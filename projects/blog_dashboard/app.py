@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf.csrf import CSRFProtect
 from forms import PostForm
 from datetime import datetime
+import uuid
 
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = 'your_secret_key'  # Change this to a secure key
@@ -50,19 +51,28 @@ def create_post():
         title = form.title.data
         content = request.form.get('content')
         timestamp = datetime.now()
+        post_id = str(uuid.uuid4())  # Generate a unique UUID
 
-        # Add the new post to the list of sample_posts
-        sample_posts.append({'title': title, 'content': content, 'timestamp': timestamp})
+        # Add the new post with the UUID
+        sample_posts.append({
+            'id': post_id,
+            'title': title,
+            'content': content,
+            'timestamp': timestamp
+        })
 
-        flash('Post created successfully', 'success')
-        return redirect(url_for('index'))
+        # After creating a post, redirect to the home page or a specific post page
+        return redirect(url_for('index'))  # Replace 'index' with the appropriate view function if necessary
+
+    # Render the post creation form
     return render_template('create_post.html', form=form)
 
-
-@app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
+@app.route('/edit_post/<string:post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
-    if post_id < len(sample_posts):
-        post = sample_posts[post_id]
+    # Find the post with the matching UUID
+    post = next((post for post in sample_posts if post['id'] == post_id), None)
+
+    if post:
         form = PostForm()
         if form.validate_on_submit():
             post['title'] = form.title.data
@@ -78,17 +88,23 @@ def edit_post(post_id):
     else:
         return "Post not found."
     
-@app.route('/post/<int:post_id>')
+@app.route('/post/<string:post_id>')
 def view_post(post_id):
-    if post_id < len(sample_posts):
-        return render_template('post.html', post=sample_posts[post_id])
+    # Find the post with the matching UUID
+    post = next((post for post in sample_posts if post['id'] == post_id), None)
+
+    if post:
+        return render_template('post.html', post=post)
     else:
         return "Post not found."
 
-@app.route('/delete_post/<int:post_id>', methods=['GET', 'POST'])
+@app.route('/delete_post/<string:post_id>', methods=['GET', 'POST'])
 def delete_post(post_id):
-    if post_id < len(sample_posts):
-        sample_posts.pop(post_id)  # Remove the post from the list
+    # Find the post with the matching UUID
+    post = next((post for post in sample_posts if post['id'] == post_id), None)
+
+    if post:
+        sample_posts.remove(post)  # Remove the post from the list
         flash('Post deleted successfully', 'success')
         return redirect(url_for('index'))
     else:
