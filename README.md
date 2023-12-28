@@ -4,7 +4,7 @@ This repository is a collection of projects that have been created through promp
 
 ## Tools used:
 - [GPT 3.5](https://platform.openai.com/docs/models/gpt-3-5)
-- - [GPT 4](https://platform.openai.com/docs/models/gpt-4)
+- [GPT 4](https://platform.openai.com/docs/models/gpt-4)
 
 ## Table of Contents
 
