@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Tarot Session</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Book Your Tarot Reading Session</h1>
+    <form method="post">
+        <label for="appointment_date">Date:</label>
+        <input type="date" id="appointment_date" name="appointment_date" required>
+
+        <label for="appointment_timeslot">Appointment Time Slot:</label>
+        <select id="appointment_timeslot" name="appointment_timeslot" required>
+            <option value="09:00 AM - 09:10 AM">09:00 AM - 09:10 AM</option>
+            <option value="09:10 AM - 09:20 AM">09:10 AM - 09:20 AM</option>
+            <option value="09:20 AM - 09:30 AM">09:20 AM - 09:30 AM</option>
+            <option value="09:30 AM - 09:40 AM">09:30 AM - 09:40 AM</option>
+            <option value="05:00 PM - 05:10 PM">05:00 PM - 05:10 PM</option>
+            <option value="05:10 PM - 05:20 PM">05:10 PM - 05:20 PM</option>
+            <option value="05:20 PM - 05:30 PM">05:20 PM - 05:30 PM</option>
+            <option value="05:30 PM - 05:40 PM">05:30 PM - 05:40 PM</option>
+        </select>
+
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="payment_method">Payment Method:</label>
+        <select id="payment_method" name="payment_method">
+            <option value="zelle">Zelle</option>
+            <option value="paypal">PayPal</option>
+        </select>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <input type="submit" value="Book Appointment">
+
+    </form>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (e) {
+                const selectedSlot = document.getElementById('appointment_timeslot').value;
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'selected_timeslot';
+                hiddenInput.value = selectedSlot;
+                form.appendChild(hiddenInput);
+            });
+        });
+    </script>
+</body>
+
+</html>

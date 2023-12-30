@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#appointmentsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.appointmentRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.appointmentDetail {
+    flex: 1;
+    padding: 5px 10px;
+    /* Additional styling */
+}
+
+.appointmentActions {
+    display: flex;
+    align-items: center;
+}
+
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    right: 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    /* Sit on top */
+    padding: 20px;
+    border-radius: 5px 0 0 0;
+    background-color: white;
+    /* Fallback color */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s;
+    /* Animation to slide in the modal from right */
+}
+
+.modal-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.close-btn {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes slideIn {
+    from {
+        top: -64px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.confirm-btn {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm-btn:hover {
+    background-color: #45a049;
+}
+
+.confirm-btn:disabled {
+    background-color: gray;
+    /* Other styles for disabled state */
+}
+
+.confirm-btn.confirmed {
+    background-color: gray;
+    /* Other styles for the "confirmed" state */
+}
+
+.deleted {
+    /* Style for deleted appointment rows */
+    animation: slideIn 0.5s;
+    /* Example: light red background */
+}
+
+.restored {
+    animation: slideIn 0.5s;
+    /* Example: light green background */
+}

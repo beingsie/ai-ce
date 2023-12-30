@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <h2>Requested Appointments</h2>
+    <div id="appointmentsContainer">
+        {% for appointment in appointments %}
+        <div id="appointment-{{ appointment['id'] }}" class="appointmentRow">
+            <div class="appointmentDetail">{{ appointment['timestamp'] }}</div>
+            <div class="appointmentDetail">{{ appointment['appointment_timeslot'] }}</div>
+            <div class="appointmentDetail">{{ appointment['name'] }}</div>
+            <div class="appointmentDetail">{{ appointment['payment_method'] }}</div>
+            <div class="appointmentDetail">{{ appointment['email'] }}</div>
+            <div class="appointmentDetail">{{ appointment['phone'] }}</div>
+            <div class="appointmentDetail" id="status-{{ appointment['id'] }}">
+                {{ 'Yes' if appointment['confirmed'] else 'No' }}
+            </div>
+
+            <div class="appointmentActions">
+                <button data-appointment-id="{{ appointment['id'] }}"
+                    class="confirm-btn {% if appointment['confirmed'] %}confirmed{% endif %}">
+                    {{ 'Unconfirm' if appointment['confirmed'] else 'Confirm' }}
+                </button>
+                <button class="delete-btn" data-appointment-id="{{ appointment['id'] }}">Delete</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Deleted Appointments</h2>
+    <div id="deletedAppointmentsContainer">
+        {% for appointment in deleted_appointments %}
+        <div id="appointment-{{ appointment['id'] }}" class="appointmentRow">
+            <div class="appointmentDetail">{{ appointment['timestamp'] }}</div>
+            <div class="appointmentDetail">{{ appointment['appointment_timeslot'] }}</div>
+            <div class="appointmentDetail">{{ appointment['name'] }}</div>
+            <div class="appointmentDetail">{{ appointment['payment_method'] }}</div>
+            <div class="appointmentDetail">{{ appointment['email'] }}</div>
+            <div class="appointmentDetail">{{ appointment['phone'] }}</div>
+            <div class="appointmentDetail" id="status-{{ appointment['id'] }}">
+                {{ 'Yes' if appointment['confirmed'] else 'No' }}
+            </div>
+
+            <div class="appointmentActions">
+                <button data-appointment-id="{{ appointment['id'] }}"
+                    class="confirm-btn {% if appointment['confirmed'] %}confirmed{% endif %}">
+                    {{ 'Unconfirm' if appointment['confirmed'] else 'Confirm' }}
+                </button>
+                <button class="restore-btn" data-appointment-id="{{ appointment['id'] }}">Restore</button>
+                {% if appointment['permanently_deleted'] %}
+                <button class="delete-permanently-btn" data-appointment-id="{{ appointment['id'] }}">Permanently
+                    Delete</button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p id="modalText"></p>
+        </div>
+    </div>
+
+    <div id="deleteConfirmationModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this appointment?</p>
+            <button id="confirmDelete">Yes, Delete</button>
+            <button id="cancelDelete">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Include the common modal template -->
+    {% include 'common_modal.html' %}
+
+    <script src="{{ url_for('static', filename='confirm.js') }}"></script>
+</body>
+
+</html>
