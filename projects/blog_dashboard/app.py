@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_session import Session
+from flask import session
 from flask_wtf.csrf import CSRFProtect
 from forms import PostForm
 import json
@@ -6,8 +8,80 @@ from datetime import datetime
 import uuid
 
 app = Flask(__name__, static_folder='static')
-app.config['SECRET_KEY'] = 'your_secret_key'  # Change this to a secure key
+# Change this to a secure key
+app.config['SECRET_KEY'] = '4a62b29a2dca2f85f6a732b8e148177d2c20656d4565f9355ef51db70c2b3e58'
 csrf = CSRFProtect(app)
+
+# Session configuration
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_PERMANENT'] = False
+
+# Initialize Flask-Session
+Session(app)
+
+# Define a session key for login status
+SESSION_KEY_LOGGED_IN = 'logged_in'
+
+# Routes
+@app.route('/')
+def root():
+    return redirect(url_for('login'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    # Check if the user is already logged in, and if so, redirect to index
+    if session.get(SESSION_KEY_LOGGED_IN):
+        return redirect(url_for('index'))
+        print('DEBUG: Setting logged_in to True in session')  # Debug statement
+
+    form = PostForm()  # Create a form instance
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Check the username and password (replace with your own authentication logic)
+        if username == 'beingsie' and password == 'Ilovepizza':
+            # Set a session variable to indicate that the user is logged in
+            session[SESSION_KEY_LOGGED_IN] = True
+            flash('Login successful', 'success')
+            return redirect(url_for('index'))
+
+        flash('Login failed. Please check your credentials.', 'danger')
+
+    # Pass the form to the template
+    return render_template('login.html', form=form)
+
+@app.route('/index')
+def index():
+    # Check if the user is logged in, and if not, redirect to login
+    if session.get(SESSION_KEY_LOGGED_IN) is True:
+         session[SESSION_KEY_LOGGED_IN] = True
+    else:
+        flash('Please login to access this page.', 'danger')
+        return redirect(url_for('login'))
+    
+    # Post sorter
+    sort_order = request.args.get('sort', 'newest')  # Default to newest
+    page = request.args.get('page', 1, type=int)
+    posts_per_page = 3
+
+    if sort_order == 'newest':
+        sorted_posts = sorted(
+            sample_posts, key=lambda post: post['timestamp'], reverse=True)
+    else:  # sort_order == 'oldest'
+        sorted_posts = sorted(sample_posts, key=lambda post: post['timestamp'])
+
+    posts, total_posts = get_paginated_posts(
+        page, posts_per_page, sorted_posts)
+    total_pages = (total_posts + posts_per_page - 1) // posts_per_page
+    return render_template('index.html', posts=posts, page=page, total_pages=total_pages, sort_order=sort_order)
+
+@app.route('/logout')
+def logout():
+    # Clear the session to log the user out
+    session.clear()
+    flash('Logged out successfully', 'success')
+    return redirect(url_for('login'))
 
 # Initialize an empty list to store blog posts
 sample_posts = []
@@ -18,9 +92,11 @@ def load_posts_from_json():
             posts = json.load(file)
             for post in posts:
                 if 'timestamp' in post:
-                    post['timestamp'] = datetime.strptime(post['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+                    post['timestamp'] = datetime.strptime(
+                        post['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
                 if 'last_edit' in post:
-                    post['last_edit'] = datetime.strptime(post['last_edit'], '%Y-%m-%d %H:%M:%S.%f')
+                    post['last_edit'] = datetime.strptime(
+                        post['last_edit'], '%Y-%m-%d %H:%M:%S.%f')
             return posts
     except (FileNotFoundError, json.JSONDecodeError):
         return []
@@ -48,21 +124,6 @@ def get_paginated_posts(page, posts_per_page, posts):
     end = start + posts_per_page
     paginated_posts = posts[start:end]
     return paginated_posts, total_posts
-
-@app.route('/')
-def index():
-    sort_order = request.args.get('sort', 'newest')  # Default to newest
-    page = request.args.get('page', 1, type=int)
-    posts_per_page = 3
-
-    if sort_order == 'newest':
-        sorted_posts = sorted(sample_posts, key=lambda post: post['timestamp'], reverse=True)
-    else:  # sort_order == 'oldest'
-        sorted_posts = sorted(sample_posts, key=lambda post: post['timestamp'])
-
-    posts, total_posts = get_paginated_posts(page, posts_per_page, sorted_posts)
-    total_pages = (total_posts + posts_per_page - 1) // posts_per_page
-    return render_template('index.html', posts=posts, page=page, total_pages=total_pages, sort_order=sort_order)
 
 @app.route('/create_post', methods=['GET', 'POST'])
 def create_post():
@@ -99,7 +160,8 @@ def edit_post(post_id):
         form = PostForm()
         if form.validate_on_submit():
             post['title'] = form.title.data
-            post['content'] = request.form.get('content')  # Get the content with styles
+            post['content'] = request.form.get(
+                'content')  # Get the content with styles
             post['last_edit'] = datetime.now()
 
             # Save the updated posts list to JSON
@@ -113,7 +175,7 @@ def edit_post(post_id):
         return render_template('edit_post.html', form=form, post=post)
     else:
         return "Post not found."
-    
+
 @app.route('/post/<string:post_id>')
 def view_post(post_id):
     # Find the post with the matching UUID

@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Flask Blog</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
     <h1>Welcome to My Flask Blog</h1>
-
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <!-- {% if session.get(SESSION_KEY_LOGGED_IN) %}
+        <p>Logged In: True <a href="{{ url_for('logout') }}">Logout</a></p>
+    {% else %}
+        <p>Logged In: False</p>
+    {% endif %} -->
     <h2>Recent Posts:</h2>
     <div class="sorting-options">
         <a href="{{ url_for('index', sort='newest') }}" class="btn btn-primary">Newest First</a>
@@ -70,7 +77,6 @@
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/text_styling.js') }}"></script>
 
 </body>
 

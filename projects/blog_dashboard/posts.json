@@ -1,1 +1,15 @@
-[]
+[
+    {
+        "id": "a0f85bdc-e213-4af6-ac5d-62b690f1ba08",
+        "title": "Mon Dec 25",
+        "content": "I've figured it out. Plan and take action now.",
+        "timestamp": "2023-12-25 19:13:38.783772"
+    },
+    {
+        "id": "87e9e5cd-23ff-4c07-ab5a-41a0d0725301",
+        "title": "DRAMATIC MUSIC FADES UP",
+        "content": "It's coming along. Very nicely.",
+        "timestamp": "2023-12-25 19:50:34.885222",
+        "last_edit": "2023-12-25 20:00:17.502293"
+    }
+]
